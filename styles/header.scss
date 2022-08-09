@@ -1,0 +1,26 @@
+.headerWrapper {
+  padding: 10px 20px;
+  box-shadow: 5px 3px 5px 0px rgb(0 0 0 / 20%);
+  @media (min-width: 1200px) {
+    padding: 10px 50px;
+  }
+  .flexContainer {
+    display: flex;
+    justify-content: space-between;
+    .hamberger {
+      margin-top: 7px;
+      cursor: pointer;
+    }
+    .flipkartLogo {
+      width: 140px;
+      height: auto;
+      cursor: pointer;
+    }
+    .headerRight {
+      margin-top: 7px;
+    }
+    .flexbox {
+      display: flex;
+    }
+  }
+}

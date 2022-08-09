@@ -1,0 +1,43 @@
+.categoriesWrapper {
+  .flexBar {
+    text-align: center;
+    display: flex;
+    overflow-x: scroll;
+    max-height: 120px;
+  }
+  .flexBar::-webkit-scrollbar {
+    display: none;
+  }
+  .category-card-wrapper {
+    min-width: 130px;
+    min-height: 80px;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 20px;
+    cursor: pointer;
+    &:hover {
+      opacity: 0.7;
+      .categoryName {
+        font-weight: 700;
+      }
+    }
+
+    .categoryName {
+      text-transform: uppercase;
+      color: #fff;
+      letter-spacing: 3px;
+      &:hover,
+      &:active,
+      &:focus {
+        font-weight: 700;
+      }
+    }
+  }
+  @media (max-width: 767px) {
+    .h2Heading {
+      margin-left: 16px;
+    }
+  }
+}

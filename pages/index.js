@@ -13,7 +13,6 @@ const containerStyles = {
 
 const Home = () => {
   const [categoryData, setCategoryData] = useState([]);
-  let cartProducts = [];
   const getCategories = async () => {
     try {
       const apiResponse = await axios.get(
@@ -38,7 +37,7 @@ const Home = () => {
       <Categories categoryData={categoryData} />
 
       <div className="productContainer">
-        <Products categoryData={categoryData} cartProducts={cartProducts} />
+        <Products categoryData={categoryData} />
       </div>
     </Container>
   );

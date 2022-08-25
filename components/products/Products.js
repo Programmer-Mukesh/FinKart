@@ -6,7 +6,7 @@ import MenuItem from "@mui/material/MenuItem";
 import Fade from "@mui/material/Fade";
 import { CatogoryForProducts } from "../../Context";
 
-const Products = ({ categoryData, cartProducts }) => {
+const Products = ({ categoryData }) => {
   const [productData, setProductData] = useState([]);
   const { selectedCategory, setSelectedCategory } =
     useContext(CatogoryForProducts);
@@ -39,7 +39,7 @@ const Products = ({ categoryData, cartProducts }) => {
   return (
     <div className="productCardMapped">
       {productData.length > 0 &&
-        productData.map((prod) => <ProductCard product={prod} key={prod.id} cartProducts={cartProducts}/>)}
+        productData.map((prod) => <ProductCard product={prod} key={prod.id} />)}
 
       <div className="Footer">
         <div className="dropDownClass">

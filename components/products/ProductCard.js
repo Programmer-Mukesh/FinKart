@@ -1,24 +1,13 @@
 import { Button, Grid } from "@mui/material";
-import React, { useState } from "react";
+import React, { useContext } from "react";
 import Rating from "@mui/material/Rating";
 import Stack from "@mui/material/Stack";
-import { useRouter } from "next/router";
-import { connect } from "react-redux";
-import { addToCart, removeFromCart } from "../../redux/Cart/action";
-import {
-  selectedItemToCart,
-  selectedLengthOfCart,
-} from "../../redux/Cart/selector";
-import { createStructuredSelector } from "reselect";
+import { CartContext } from "../../Context";
 
-const ProductCard = ({ product, addToTheCart, removeFromTheCart, cartProducts }) => {
+const ProductCard = ({ product }) => {
+  const { cart, setCart } = useContext(CartContext);
 
-  const handleAddToCart = () => {
-    cartProducts.push(product);
-    console.log("arrayProduct", JSON.parse(sessionStorage.getItem("cart")));
-    sessionStorage.setItem("cart", JSON.stringify(cartProducts));
-  };
-
+  console.log("cart reducer called", cart);
   return (
     <div className="productCardStyles">
       <Grid container>
@@ -41,22 +30,42 @@ const ProductCard = ({ product, addToTheCart, removeFromTheCart, cartProducts })
           )}
 
           <h3 className="productPrice">₹ {product.final_price}</h3>
-          <Button
-            variant="contained"
-            className="addToCartBtn"
-            onClick={() => handleAddToCart()}
-          >
-            Add to cart
-          </Button>
+          {cart.some((p) => p.id === product.id) ? (
+            <Button
+              variant="contained"
+              className="removeCartBtn"
+              onClick={() =>
+                setCart((prevItems) =>
+                  prevItems.filter((item) => item.id !== product.id)
+                )
+              }
+            >
+              Remove from cart
+            </Button>
+          ) : (
+            <Button
+              variant="contained"
+              className="addToCartBtn"
+              onClick={() =>
+                setCart((prevItems) => [...prevItems, { ...product, qty: 1 }])
+              }
+            >
+              Add to cart
+            </Button>
+          )}
         </Grid>
       </Grid>
     </div>
   );
 };
 
-const mapDispatchToProps = (dispatch) => ({
-  addToTheCart: (id) => dispatch(addToCart(id)),
-  removeFromTheCart: (id) => dispatch(removeFromCart(id)),
-});
+// const mapStateToProps = (state) =>({
+//   addToCart: state.cart.products,
+// })
 
-export default connect(null, mapDispatchToProps)(ProductCard);
+// const mapDispatchToProps = (dispatch) => ({
+//   addToTheCart: (prod) => dispatch(addToCart(prod)),
+//   removeFromTheCart: (id) => dispatch(removeFromCart(id)),
+// });
+
+export default ProductCard;

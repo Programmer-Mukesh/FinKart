@@ -1,2 +1,4 @@
-import { createContext } from 'react';
+import { createContext } from "react";
 export const CatogoryForProducts = createContext();
+
+export const CartContext = createContext();

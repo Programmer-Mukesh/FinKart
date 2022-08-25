@@ -2,11 +2,10 @@ import "../styles/globals.css";
 import "../styles/header.scss";
 import "../styles/categories.scss";
 import "../styles/productCard.scss";
+import "../styles/cart.scss";
 import Layout from "../components/layout";
-import { CatogoryForProducts } from "../Context";
+import { CartContext, CatogoryForProducts } from "../Context";
 import { useState } from "react";
-import {Provider} from "react-redux";
-import { store, wrapper } from "../redux/store";
 
 function MyApp({ Component, pageProps }) {
   const [selectedCategory, setSelectedCategory] = useState({
@@ -14,17 +13,21 @@ function MyApp({ Component, pageProps }) {
     categoryName: "Skin",
   }); //default Category is Skin
 
+  const [cart, setCart] = useState([]);
+
   return (
-    <Provider store={store}>
-      <CatogoryForProducts.Provider
-        value={{ selectedCategory, setSelectedCategory }}
-      >
-        <Layout>
-          <Component {...pageProps} />
-        </Layout>
-      </CatogoryForProducts.Provider>
-    </Provider>
+    <>
+      <CartContext.Provider value={{ cart, setCart }}>
+        <CatogoryForProducts.Provider
+          value={{ selectedCategory, setSelectedCategory }}
+        >
+          <Layout>
+            <Component {...pageProps} />
+          </Layout>
+        </CatogoryForProducts.Provider>
+      </CartContext.Provider>
+    </>
   );
 }
 
-export default wrapper.withRedux(MyApp);
+export default MyApp;

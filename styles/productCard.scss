@@ -62,7 +62,14 @@
       .addToCartBtn {
         text-transform: uppercase;
         background-color: rgb(79, 207, 100);
-        width: 170px;
+        width: 225px;
+        padding: auto;
+        margin-bottom: 30px;
+      }
+      .removeCartBtn {
+        text-transform: uppercase;
+        background-color: rgb(247, 46, 46);
+        width: 225px;
         padding: auto;
         margin-bottom: 30px;
       }
@@ -141,5 +148,19 @@
         padding: 0px;
       }
     }
+  }
+}
+@media (max-width: 767px) {
+  .addToCartBtn {
+    font-size: 15px;
+    padding: 6px 10px;
+    font-family: Calibri, "Trebuchet MS", sans-serif;
+    width: 170px !important;
+  }
+  .removeCartBtn {
+    font-size: 15px;
+    padding: 6px 10px;
+    font-family: Calibri, "Trebuchet MS", sans-serif;
+    width: 170px !important;
   }
 }

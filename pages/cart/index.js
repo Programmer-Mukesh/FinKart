@@ -15,7 +15,7 @@ const CartPage = () => {
   return (
     <Container className="productContainer cartProductWrapper">
       <h2>Cart Items</h2>
-      <h3>SubTotal: &nbsp;${getTotal()}/- </h3>
+      <h3>SubTotal: &nbsp; ₹ {getTotal()}/- </h3>
       {cart.length > 0 ? (
         cart.map((item) => (
           <div className="productCardStyles">

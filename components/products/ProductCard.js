@@ -7,7 +7,6 @@ import { CartContext } from "../../Context";
 const ProductCard = ({ product }) => {
   const { cart, setCart } = useContext(CartContext);
 
-  console.log("cart reducer called", cart);
   return (
     <div className="productCardStyles">
       <Grid container>

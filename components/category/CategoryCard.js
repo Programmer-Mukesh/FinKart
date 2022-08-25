@@ -10,7 +10,7 @@ const CategoryCard = ({ category }) => {
     if (ele) {
       ele.scrollIntoView({
         behavior: "smooth",
-        // block: "start",
+        inline: "start",
       });
     }
   }, [selectedCategory]);

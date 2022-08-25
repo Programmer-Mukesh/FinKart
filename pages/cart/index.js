@@ -7,7 +7,6 @@ import { CartContext } from "../../Context";
 
 const CartPage = () => {
   const { cart, setCart } = useContext(CartContext);
-  console.log("cart page", cart);
 
   const getTotal = () => {
     let total = cart.reduce((acc, curr) => acc + Number(curr.price), 0);
@@ -16,8 +15,8 @@ const CartPage = () => {
   return (
     <Container className="productContainer cartProductWrapper">
       <h2>Cart Items</h2>
-      <h3>SubTotal: ${getTotal()} </h3>
-      {cart &&
+      <h3>SubTotal: &nbsp;${getTotal()}/- </h3>
+      {cart.length > 0 ? (
         cart.map((item) => (
           <div className="productCardStyles">
             <Grid container>
@@ -45,7 +44,12 @@ const CartPage = () => {
               </Grid>
             </Grid>
           </div>
-        ))}
+        ))
+      ) : (
+        <div className="emptyCart">
+          <h4>Your cart is empty...</h4>
+        </div>
+      )}
     </Container>
   );
 };

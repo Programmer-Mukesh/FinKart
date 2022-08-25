@@ -4,13 +4,13 @@ import { CatogoryForProducts } from "../../Context";
 const CategoryCard = ({ category }) => {
   const { selectedCategory, setSelectedCategory } =
     useContext(CatogoryForProducts);
-  
+
   useEffect(() => {
     let ele = document.getElementById(`${selectedCategory.categoryName}`);
     if (ele) {
       ele.scrollIntoView({
         behavior: "smooth",
-        inline: "center",
+        // block: "start",
       });
     }
   }, [selectedCategory]);

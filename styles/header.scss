@@ -1,6 +1,11 @@
 .headerWrapper {
   padding: 10px 20px;
   box-shadow: 5px 3px 5px 0px rgb(0 0 0 / 20%);
+  position: fixed;
+  width: 100%;
+  top: 0px;
+  background: white;
+  z-index: 9999;
   @media (min-width: 1200px) {
     padding: 10px 50px;
   }

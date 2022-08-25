@@ -152,15 +152,15 @@
 }
 @media (max-width: 767px) {
   .addToCartBtn {
-    font-size: 15px;
-    padding: 6px 10px;
-    font-family: Calibri, "Trebuchet MS", sans-serif;
+    font-size: 15px !important;
+    padding: 6px 10px !important;
+    font-family: Calibri, "Trebuchet MS", sans-serif !important;
     width: 170px !important;
   }
   .removeCartBtn {
-    font-size: 15px;
-    padding: 6px 10px;
-    font-family: Calibri, "Trebuchet MS", sans-serif;
+    font-size: 15px !important;
+    padding: 6px 10px !important;
+    font-family: Calibri, "Trebuchet MS", sans-serif !important;
     width: 170px !important;
   }
 }

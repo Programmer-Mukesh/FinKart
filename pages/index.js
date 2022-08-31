@@ -31,7 +31,7 @@ const Home = () => {
   return (
     <Container sx={containerStyles}>
       <Head>
-        <title>Ecommerce Site</title>
+        <title>Home | Finkart</title>
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
       <Categories categoryData={categoryData} />

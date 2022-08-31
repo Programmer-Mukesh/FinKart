@@ -4,18 +4,57 @@ import React, { useContext } from "react";
 import Rating from "@mui/material/Rating";
 import Stack from "@mui/material/Stack";
 import { CartContext } from "../../Context";
+import Head from "next/head";
+
+const qtyButtonStyles = {
+  backgroundColor: "#9c9c9c",
+  fontSize: 18,
+  borderRadius: "50%",
+  minWidth: "47px",
+  "&:hover": {
+    backgroundColor: "#bdbdbd",
+  },
+};
 
 const CartPage = () => {
   const { cart, setCart } = useContext(CartContext);
 
   const getTotal = () => {
-    let total = cart.reduce((acc, curr) => acc + Number(curr.price), 0);
+    let total = cart.reduce(
+      (acc, curr) => acc + Number(curr.price) * curr.qty,
+      0
+    );
     return total;
   };
+
+  const increaseProductQty = (item, id) => {
+    let oldCart = [...cart];
+    const index = cart.findIndex((item) => item.id === id);
+    oldCart[index].qty = oldCart[index].qty + 1;
+    setCart([...oldCart]);
+  };
+
+  const decreaseProductQty = (item, id) => {
+    if (item.qty > 1) {
+      let oldCart = [...cart];
+      const index = cart.findIndex((item) => item.id === id);
+      oldCart[index].qty = oldCart[index].qty - 1;
+      setCart([...oldCart]);
+    } else {
+      setCart((prevItems) => prevItems.filter((prod) => prod.id !== item.id));
+    }
+  };
+
   return (
     <Container className="productContainer cartProductWrapper">
+      <Head>
+        <title>Cart | Finkart</title>
+        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+      </Head>
       <h2>Cart Items</h2>
-      <h3>SubTotal: &nbsp; ₹ {getTotal()}/- </h3>
+      <h3>
+        Total Amount: <span className="total-amount">₹ {getTotal()}</span>/-
+      </h3>
       {cart.length > 0 ? (
         cart.map((item) => (
           <div className="productCardStyles">
@@ -30,16 +69,21 @@ const CartPage = () => {
               <Grid item xs={8} className="productDetailGrid" paddingLeft={2}>
                 <p className="productName">{item.name}</p>
                 <h3 className="productPrice">₹ {item.final_price}</h3>
+
                 <Button
                   variant="contained"
-                  className="removeCartBtn"
-                  onClick={() =>
-                    setCart((prevItems) =>
-                      prevItems.filter((prod) => prod.id !== item.id)
-                    )
-                  }
+                  sx={qtyButtonStyles}
+                  onClick={() => increaseProductQty(item, item.id)}
                 >
-                  Remove from cart
+                  +
+                </Button>
+                <span className="qty-amount">{item.qty}</span>
+                <Button
+                  sx={qtyButtonStyles}
+                  variant="contained"
+                  onClick={() => decreaseProductQty(item, item.id)}
+                >
+                  −
                 </Button>
               </Grid>
             </Grid>

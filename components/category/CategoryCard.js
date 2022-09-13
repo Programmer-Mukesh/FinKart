@@ -17,7 +17,11 @@ const CategoryCard = ({ category }) => {
 
   return (
     <div
-      className="category-card-wrapper"
+      className={
+        category.category_name === selectedCategory.categoryName
+          ? "category-card-wrapper activeCatogory"
+          : "category-card-wrapper"
+      }
       style={{
         backgroundImage: `url(${category.category_image})`,
         backgroundRepeat: "no-repeat",

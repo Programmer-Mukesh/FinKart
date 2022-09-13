@@ -1,0 +1,63 @@
+.loginContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .bgImage {
+    background-image: url(../public/LoginImage.png);
+    background-position: center 85%;
+    background-repeat: no-repeat;
+
+    background-color: #2874f0;
+    color: #fff;
+    padding: 40px 33px;
+    font-size: 15px;
+    @media (min-width: 768px) {
+      margin-right: 20px;
+    }
+    @media (max-width: 767px) {
+      background-size: 35%;
+      background-position: right 95%;
+      padding: 10px 20px;
+      .title,
+      .subTitle {
+        width: 68%;
+      }
+    }
+  }
+  .MuiPaper-root {
+    .MuiGrid-container {
+      @media (min-width: 768px) {
+        max-width: 750px !important;
+        max-height: 430px !important;
+      }
+      @media (max-width: 767px) {
+        width: 100%;
+        height: auto;
+      }
+      @media (max-width: 767px) {
+        margin-bottom: 40px;
+      }
+    }
+  }
+
+  .MuiFormControl-root,
+  .MuiAlert-root {
+    width: 100%;
+    margin-top: 20px;
+  }
+  .MuiButtonBase-root {
+    width: 100%;
+  }
+  .smallText {
+    margin-top: 30px;
+    font-size: 14px;
+    color: #878787;
+  }
+  .attention {
+    color: #2874f0;
+    text-align: center;
+    margin-top: 20px;
+    cursor: pointer;
+  }
+}

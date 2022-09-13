@@ -3,6 +3,7 @@ import "../styles/header.scss";
 import "../styles/categories.scss";
 import "../styles/productCard.scss";
 import "../styles/cart.scss";
+import "../styles/login.scss";
 import Layout from "../components/layout";
 import { CartContext, CatogoryForProducts } from "../Context";
 import { useState } from "react";

@@ -21,7 +21,7 @@ const CartPage = () => {
 
   const getTotal = () => {
     let total = cart.reduce(
-      (acc, curr) => acc + Number(curr.price) * curr.qty,
+      (acc, curr) => acc + Number(curr.final_price) * curr.qty,
       0
     );
     return total;

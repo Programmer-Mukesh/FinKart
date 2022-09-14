@@ -10,6 +10,12 @@ import {
 import { useRouter } from "next/router";
 import UserLogin from "../components/login_register";
 
+const containerStyle = {
+  "@media (min-width: 768px)": {
+    maxWidth: "750px",
+    maxHeight: "430px",
+  },
+};
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -73,7 +79,7 @@ const Login = () => {
   }, []);
 
   return (
-    <Container className="loginContainer">
+    <Container className="loginContainer" sx={containerStyle}>
       {pageLogin ? (
         <UserLogin
           title="Login"

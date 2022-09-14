@@ -1,46 +1,118 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
-import Categories from "../components/category/Categories";
-import Products from "../components/products/Products";
-import { Container } from "@mui/material";
-import Head from "next/head";
+import React, { useEffect, useState } from "react";
+import TextField from "@mui/material/TextField";
+import { Grid, Container, Button, Paper } from "@mui/material";
+import { app } from "../firebase.config";
+import {
+  getAuth,
+  signInWithEmailAndPassword,
+  createUserWithEmailAndPassword,
+} from "firebase/auth";
+import { useRouter } from "next/router";
+import UserLogin from "../components/login_register";
 
-const containerStyles = {
-  "@media(max-width:767px)": {
-    padding: "0px",
+const containerStyle = {
+  "@media (min-width: 768px)": {
+    maxWidth: "750px",
+    maxHeight: "430px",
   },
 };
+const Login = () => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [name, setName] = useState("");
+  const [error, setError] = useState("");
+  const [pageLogin, setPageLogin] = useState(true);
+  const router = useRouter();
 
-const Home = () => {
-  const [categoryData, setCategoryData] = useState([]);
-  const getCategories = async () => {
-    try {
-      const apiResponse = await axios.get(
-        "https://backend.ustraa.com/rest/V1/api/homemenucategories/v1.0.1?device_type=mob"
-      );
-      setCategoryData(apiResponse.data.category_list);
-    } catch (error) {
-      console.log("error", error);
+  const handleAction = (id) => {
+    const authentication = getAuth();
+
+    if (id === 1) {
+      signInWithEmailAndPassword(authentication, email, password)
+        .then((response) => {
+          router.push("/home");
+          sessionStorage.setItem("User", JSON.stringify(response.user));
+        })
+        .catch((error) => {
+          if (error.code === "auth/wrong-password") {
+            setError("Please check the Password");
+          } else if (
+            error.code === "auth/user-not-found" ||
+            error.code === "auth/invalid-email"
+          ) {
+            setError("Please check the Email");
+          } else {
+            alert(error);
+          }
+        });
+    } else {
+      if (name.length > 3) {
+        createUserWithEmailAndPassword(authentication, email, password)
+          .then((response) => {
+            router.push("/home");
+            let user = { ...response.user, userName: name };
+            sessionStorage.setItem("User", JSON.stringify(user));
+          })
+          .catch((error) => {
+            if (error.code === "auth/wrong-password") {
+              setError("Please check the Password");
+            } else if (
+              error.code === "auth/user-not-found" ||
+              error.code === "auth/invalid-email"
+            ) {
+              setError("Please check the Email");
+            } else {
+              alert(error);
+            }
+          });
+      } else {
+        setError("Enter correct Full Name");
+      }
     }
   };
 
   useEffect(() => {
-    getCategories();
+    const user = JSON.parse(sessionStorage.getItem("User"));
+    if (user) {
+      router.push("/home");
+    }
   }, []);
 
   return (
-    <Container sx={containerStyles}>
-      <Head>
-        <title>Home | Finkart</title>
-        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
-      </Head>
-      <Categories categoryData={categoryData} />
-
-      <div className="productContainer">
-        <Products categoryData={categoryData} />
-      </div>
+    <Container className="loginContainer" sx={containerStyle}>
+      {pageLogin ? (
+        <UserLogin
+          title="Login"
+          subTitle="Get access to all our products"
+          email={email}
+          setEmail={setEmail}
+          setPassword={setPassword}
+          password={password}
+          handleAction={() => handleAction(1)}
+          btnText="Login"
+          pageLogin={pageLogin}
+          setPageLogin={setPageLogin}
+          error={error}
+        />
+      ) : (
+        <UserLogin
+          title="Looks like you're new here!"
+          subTitle="Sign up with your email to get started"
+          email={email}
+          setEmail={setEmail}
+          name={name}
+          setName={setName}
+          setPassword={setPassword}
+          password={password}
+          handleAction={() => handleAction(2)}
+          btnText="Register"
+          pageLogin={pageLogin}
+          setPageLogin={setPageLogin}
+          error={error}
+        />
+      )}
     </Container>
   );
 };
 
-export default Home;
+export default Login;

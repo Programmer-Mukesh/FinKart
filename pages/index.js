@@ -14,6 +14,7 @@ const containerStyle = {
   "@media (min-width: 768px)": {
     maxWidth: "750px",
     maxHeight: "430px",
+    marginTop: "30px",
   },
 };
 const Login = () => {

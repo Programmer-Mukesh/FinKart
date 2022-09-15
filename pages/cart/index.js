@@ -1,8 +1,6 @@
 import { Container } from "@mui/material";
 import { Button, Grid } from "@mui/material";
 import React, { useContext } from "react";
-import Rating from "@mui/material/Rating";
-import Stack from "@mui/material/Stack";
 import { CartContext } from "../../Context";
 import Head from "next/head";
 
@@ -66,7 +64,13 @@ const CartPage = () => {
                   alt="productImg"
                 />
               </Grid>
-              <Grid item xs={8} className="productDetailGrid" paddingLeft={2} paddingBottom={3}>
+              <Grid
+                item
+                xs={8}
+                className="productDetailGrid"
+                paddingLeft={2}
+                paddingBottom={3}
+              >
                 <p className="productName">{item.name}</p>
                 <h3 className="productPrice">₹ {item.final_price}</h3>
 

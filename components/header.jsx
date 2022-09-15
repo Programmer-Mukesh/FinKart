@@ -22,7 +22,7 @@ const Header = () => {
   const router = useRouter();
 
   const handleLogout = () => {
-    sessionStorage.removeItem("User");
+    localStorage.removeItem("User");
     location.href = "/";
     handleClose();
   };
@@ -36,8 +36,8 @@ const Header = () => {
   };
 
   useEffect(() => {
-    if (sessionStorage.getItem("User")) {
-      setUserSession(JSON.parse(sessionStorage.getItem("User")));
+    if (localStorage.getItem("User")) {
+      setUserSession(JSON.parse(localStorage.getItem("User")));
     }
   }, [router, userSession?.email]);
 
@@ -48,7 +48,7 @@ const Header = () => {
           <div className="hamberger">
             <MenuIcon />
           </div>
-          <Link href="/">
+          <Link href={userSession ? "/home" : "/"}>
             <Image
               className="flipkartLogo"
               src={Logo}

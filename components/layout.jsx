@@ -5,7 +5,7 @@ const Layout = ({ children }) => {
   return (
     <div>
       <Header />
-      <main style={{ marginTop: "80px" }}>{children}</main>
+      <main>{children}</main>
     </div>
   );
 };

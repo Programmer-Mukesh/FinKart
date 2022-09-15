@@ -32,7 +32,7 @@ const Home = () => {
   }, []);
 
   useEffect(() => {
-    if (!sessionStorage.getItem("User")) {
+    if (!localStorage.getItem("User")) {
       router.push("/");
     }
   }, [router.pathname]);

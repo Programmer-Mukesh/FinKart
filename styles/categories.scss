@@ -4,18 +4,21 @@
     display: flex;
     overflow-x: scroll;
     max-height: 120px;
+    align-items: center;
   }
   .flexBar::-webkit-scrollbar {
     display: none;
   }
+
   .category-card-wrapper {
     min-width: 130px;
-    min-height: 80px;
+    height: 80px;
     border-radius: 4px;
     display: flex;
     align-items: center;
     justify-content: center;
     margin-right: 20px;
+    opacity: 0.85;
     cursor: pointer;
     &:hover {
       opacity: 0.7;
@@ -35,9 +38,29 @@
       }
     }
   }
+  .activeCatogory {
+    opacity: 1 !important;
+    font-size: 20px;
+    font-weight: 700;
+    height: 95px;
+  }
   @media (max-width: 767px) {
     .h2Heading {
       margin-left: 16px;
+    }
+    .category-card-wrapper {
+      min-width: 120px;
+      height: 65px;
+      .categoryName {
+        font-size: 15px;
+      }
+    }
+    .activeCatogory {
+      min-width: 120px;
+      height: 76px;
+      .categoryName {
+        font-size: 17px;
+      }
     }
   }
 }

@@ -4,6 +4,7 @@ import Categories from "../../components/category/Categories";
 import Products from "../../components/products/Products";
 import { Container } from "@mui/material";
 import Head from "next/head";
+import { useRouter } from "next/router";
 
 const containerStyles = {
   "@media(max-width:767px)": {
@@ -13,6 +14,8 @@ const containerStyles = {
 
 const Home = () => {
   const [categoryData, setCategoryData] = useState([]);
+  const router = useRouter();
+
   const getCategories = async () => {
     try {
       const apiResponse = await axios.get(
@@ -27,6 +30,12 @@ const Home = () => {
   useEffect(() => {
     getCategories();
   }, []);
+
+  useEffect(() => {
+    if (!sessionStorage.getItem("User")) {
+      router.push("/");
+    }
+  }, [router.pathname]);
 
   return (
     <Container sx={containerStyles}>

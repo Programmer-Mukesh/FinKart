@@ -60,6 +60,18 @@ const Header = () => {
         </div>
         <div className="flexbox headerRight">
           {/* <SearchIcon sx={{ cursor: "pointer" }} /> */}
+          <div style={{ position: "relative" }}>
+            <Link href="/cart">
+              <AddShoppingCartIcon
+                sx={{
+                  color: "#0099ff",
+                  cursor: "pointer",
+                  margin: "2px 15px 0px 15px",
+                }}
+              />
+            </Link>
+            {cart.length > 0 && <div className="cartItems">{cart.length}</div>}
+          </div>
           <div>
             {userSession?.email ? (
               <Avatar
@@ -90,18 +102,6 @@ const Header = () => {
               {/* <MenuItem>Hi {userSession}!</MenuItem> */}
               <MenuItem onClick={handleLogout}>Logout</MenuItem>
             </Menu>
-          </div>
-          <div style={{ position: "relative" }}>
-            <Link href="/cart">
-              <AddShoppingCartIcon
-                sx={{
-                  color: "#0099ff",
-                  cursor: "pointer",
-                  margin: "0 15px",
-                }}
-              />
-            </Link>
-            {cart.length > 0 && <div className="cartItems">{cart.length}</div>}
           </div>
         </div>
       </div>

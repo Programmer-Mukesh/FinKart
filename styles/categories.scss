@@ -4,18 +4,15 @@
     display: flex;
     overflow-x: scroll;
     max-height: 120px;
+    align-items: center;
   }
   .flexBar::-webkit-scrollbar {
     display: none;
   }
-  .activeCatogory {
-    opacity: 1 !important;
-    font-size: 20px;
-    font-weight: 700;
-  }
+
   .category-card-wrapper {
     min-width: 130px;
-    min-height: 80px;
+    height: 80px;
     border-radius: 4px;
     display: flex;
     align-items: center;
@@ -40,6 +37,12 @@
         font-weight: 700;
       }
     }
+  }
+  .activeCatogory {
+    opacity: 1 !important;
+    font-size: 20px;
+    font-weight: 700;
+    height: 95px;
   }
   @media (max-width: 767px) {
     .h2Heading {

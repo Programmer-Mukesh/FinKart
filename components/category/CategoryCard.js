@@ -11,7 +11,12 @@ const CategoryCard = ({ category }) => {
       ele.scrollIntoView({
         behavior: "smooth",
         inline: "start",
+        inline: "center",
       });
+      // window.scrollTo({
+      //   top: ele.offsetTop,
+      //   behavior: "smooth",
+      // });
     }
   }, [selectedCategory]);
 
@@ -26,7 +31,7 @@ const CategoryCard = ({ category }) => {
         backgroundImage: `url(${category.category_image})`,
         backgroundRepeat: "no-repeat",
         backgroundPosition: "center",
-        backgroundSize: "130px 80px",
+        backgroundSize: "cover",
       }}
       onClick={() =>
         setSelectedCategory({

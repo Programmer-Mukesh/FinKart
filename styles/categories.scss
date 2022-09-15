@@ -48,5 +48,19 @@
     .h2Heading {
       margin-left: 16px;
     }
+    .category-card-wrapper {
+      min-width: 110px;
+      height: 65px;
+      .categoryName {
+        font-size: 15px;
+      }
+    }
+    .activeCatogory {
+      min-width: 120px;
+      height: 76px;
+      .categoryName {
+        font-size: 17px;
+      }
+    }
   }
 }

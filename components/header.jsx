@@ -66,7 +66,7 @@ const Header = () => {
                 sx={{
                   color: "#0099ff",
                   cursor: "pointer",
-                  margin: "2px 20px 0px 15px",
+                  margin: "2px 15px 0px 15px",
                 }}
               />
             </Link>

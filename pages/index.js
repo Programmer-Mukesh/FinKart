@@ -30,7 +30,7 @@ const Login = () => {
       signInWithEmailAndPassword(authentication, email, password)
         .then((response) => {
           router.push("/home");
-          sessionStorage.setItem("User", JSON.stringify(response.user));
+          localStorage.setItem("User", JSON.stringify(response.user));
         })
         .catch((error) => {
           if (error.code === "auth/wrong-password") {
@@ -50,7 +50,7 @@ const Login = () => {
           .then((response) => {
             router.push("/home");
             let user = { ...response.user, userName: name };
-            sessionStorage.setItem("User", JSON.stringify(user));
+            localStorage.setItem("User", JSON.stringify(user));
           })
           .catch((error) => {
             if (error.code === "auth/wrong-password") {
@@ -71,7 +71,7 @@ const Login = () => {
   };
 
   useEffect(() => {
-    const user = JSON.parse(sessionStorage.getItem("User"));
+    const user = JSON.parse(localStorage.getItem("User"));
     if (user) {
       router.push("/home");
     }

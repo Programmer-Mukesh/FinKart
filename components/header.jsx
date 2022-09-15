@@ -48,7 +48,7 @@ const Header = () => {
           <div className="hamberger">
             <MenuIcon />
           </div>
-          <Link href="/">
+          <Link href={userSession ? "/home" : "/"}>
             <Image
               className="flipkartLogo"
               src={Logo}

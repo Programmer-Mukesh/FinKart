@@ -66,7 +66,7 @@ const CartPage = () => {
                   alt="productImg"
                 />
               </Grid>
-              <Grid item xs={8} className="productDetailGrid" paddingLeft={2}>
+              <Grid item xs={8} className="productDetailGrid" paddingLeft={2} paddingBottom={3}>
                 <p className="productName">{item.name}</p>
                 <h3 className="productPrice">₹ {item.final_price}</h3>
 
